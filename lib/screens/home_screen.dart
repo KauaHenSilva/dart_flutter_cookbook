@@ -1,22 +1,26 @@
 import 'package:dart_flutter_cookbooks/components/my_drawer.dart';
 import 'package:dart_flutter_cookbooks/data/dummy_data.dart';
 import 'package:dart_flutter_cookbooks/models/category.dart';
+import 'package:dart_flutter_cookbooks/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
-  _creatGridCategory(List<Category> categories) {
+  _creatGridCategory(BuildContext context, List<Category> categories) {
+    final double height = MediaQuery.of(context).size.width;
     return GridView.builder(
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: height > 600 ? 5 : 2,
         childAspectRatio: 3 / 2,
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
       ),
       itemCount: categories.length,
       itemBuilder: (ctx, i) => InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).pushNamed(AppRoutes.mealsList, arguments: categories[i]);
+        },
         borderRadius: const BorderRadius.all(Radius.circular(15)),
         child: Container(
           margin: const EdgeInsets.all(5),
@@ -47,7 +51,7 @@ class HomeScreen extends StatelessWidget {
         drawer: const MyDrawer(),
         body: TabBarView(
           children: [
-            _creatGridCategory(dummyCategories),
+            _creatGridCategory(context, dummyCategories),
             const Center(child: Text('Favorite')),
           ],
         ),

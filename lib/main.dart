@@ -1,5 +1,6 @@
 import 'package:dart_flutter_cookbooks/routes/app_routes.dart';
 import 'package:dart_flutter_cookbooks/screens/home_screen.dart';
+import 'package:dart_flutter_cookbooks/screens/meals_list_screen.dart';
 import 'package:dart_flutter_cookbooks/screens/settting_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
       routes: {
         AppRoutes.home: (context) => const HomeScreen(),
         AppRoutes.settings: (context) => const SetttingScreen(),
+        AppRoutes.mealsList: (context) => const MealsListScreen(),
       },
     );
   }
