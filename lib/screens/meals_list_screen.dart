@@ -1,19 +1,44 @@
 import 'package:dart_flutter_cookbooks/data/dummy_data.dart';
 import 'package:dart_flutter_cookbooks/models/category.dart';
 import 'package:dart_flutter_cookbooks/models/meal.dart';
+import 'package:dart_flutter_cookbooks/models/settings.dart';
 import 'package:flutter/material.dart';
 
-class MealsListScreen extends StatelessWidget {
-  const MealsListScreen({Key? key}) : super(key: key);
+class MealsListScreen extends StatefulWidget {
+  final Settings settings;
+  const MealsListScreen({Key? key, required this.settings}) : super(key: key);
+
+  @override
+  State<MealsListScreen> createState() => _MealsListScreenState();
+}
+
+class _MealsListScreenState extends State<MealsListScreen> {
+  List<Meal> get mealsFiltradConfig {
+    return dummyMeals.where((meal) {
+      if (widget.settings.isGlutenFree && !meal.isGlutenFree) {
+        return false;
+      }
+      if (widget.settings.isLactoseFree && !meal.isLactoseFree) {
+        return false;
+      }
+      if (widget.settings.isVegan && !meal.isVegan) {
+        return false;
+      }
+      if (widget.settings.isVegetarian && !meal.isVegetarian) {
+        return false;
+      }
+      return true;
+    }).toList();
+  }
 
   @override
   Widget build(BuildContext context) {
     final Category category =
         ModalRoute.of(context)!.settings.arguments as Category;
 
-    final List<Meal> meals = dummyMeals.where((meal) {
-      return meal.categories.contains(category.id);
-    }).toList();
+    List<Meal> mealsFiltradFinal = mealsFiltradConfig
+        .where((element) => element.categories.contains(category.id))
+        .toList();
 
     Widget creatMealsList(List<Meal> meals) {
       if (meals.isEmpty) {
@@ -44,6 +69,6 @@ class MealsListScreen extends StatelessWidget {
         appBar: AppBar(
           title: Text(category.title),
         ),
-        body: creatMealsList(meals));
+        body: creatMealsList(mealsFiltradFinal));
   }
 }
