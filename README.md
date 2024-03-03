@@ -1,8 +1,8 @@
-# DartFlutter_DespesasPessoais
+# Dart_Flutter_Cookbooks
 
 ### 🎓 App em Execução (Web)
 
-> Link: [Flutter Dart Despesas Pessoias App Web](https://despesas-pessoais.vercel.app/)
+> Link: [Flutter Dart Cookbooks App Web](dart-flutter-cookbooks.vercel.app/)
 
 > ⚠️ **Nota:** Este aplicativo foi desenvolvido para dispositivos móveis, algumas fontes podem não ser exibidas corretamente em outros ambientes.
 
@@ -32,13 +32,13 @@ Dentro desse abiente (vscode) instale as exetenções [Dart](https://marketplace
 1. **Clone este repositório:**
 
     ```bash
-    git clone https://github.com/KauaHenSilva/DartFlutter_DespesasPessoias.git
+    git clone https://github.com/KauaHenSilva/Dart_Flutter_Cookbooks.git
     ```
 
 2. **Navegue até o diretório do projeto:**
 
     ```bash
-    cd DartFlutter_DespesasPessoias
+    cd Dart_Flutter_Cookbooks
     ```
 
 3. **Obtenha as dependências:**
