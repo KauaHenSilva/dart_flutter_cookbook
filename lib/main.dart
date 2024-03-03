@@ -1,4 +1,3 @@
-import 'package:dart_flutter_cookbooks/data/dummy_data.dart';
 import 'package:dart_flutter_cookbooks/models/meal.dart';
 import 'package:dart_flutter_cookbooks/models/settings.dart';
 import 'package:dart_flutter_cookbooks/routes/app_routes.dart';
