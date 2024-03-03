@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 class MyDrawer extends StatelessWidget {
   const MyDrawer({Key? key}) : super(key: key);
 
-
   Widget _creatItem(IconData icon, String label, void Function() onTap) {
     return ListTile(
       leading: Icon(icon),
@@ -23,18 +22,14 @@ class MyDrawer extends StatelessWidget {
         padding: EdgeInsets.only(top: paddingTop),
         children: [
           ListTile(
-            title: const Flexible(
-              child: Text(
-                'Kaua Henrique Da Silva',
-                overflow: TextOverflow.ellipsis,
-              ),
+            title: const Text(
+              'Kaua Henrique Da Silva',
+              overflow: TextOverflow.clip,
             ),
             subtitle: const Text('KauaHenSilva'),
             leading: CircleAvatar(
-              child: ClipOval(
-                child: Image.network(
-                  'https://avatars.githubusercontent.com/KauaHenSilva',
-                ),
+              child: Image.network(
+                'https://avatars.githubusercontent.com/KauaHenSilva',
               ),
             ),
           ),
