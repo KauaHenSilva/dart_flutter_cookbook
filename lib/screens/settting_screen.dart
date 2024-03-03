@@ -47,7 +47,7 @@ class _SetttingScreenState extends State<SetttingScreen> {
               value: settings.isLactoseFree,
               onChanged: (value) {
                 setState(() {
-                  settings.isGlutenFree = value;
+                  settings.isLactoseFree = value;
                 });
                 widget.onSettingsChanged(settings);
               },
@@ -58,7 +58,7 @@ class _SetttingScreenState extends State<SetttingScreen> {
               value: settings.isVegan,
               onChanged: (value) {
                 setState(() {
-                  settings.isGlutenFree = value;
+                  settings.isVegan = value;
                 });
                 widget.onSettingsChanged(settings);
               },
@@ -69,7 +69,7 @@ class _SetttingScreenState extends State<SetttingScreen> {
               value: settings.isVegetarian,
               onChanged: (value) {
                 setState(() {
-                  settings.isGlutenFree = value;
+                  settings.isVegetarian = value;
                 });
                 widget.onSettingsChanged(settings);
               },
