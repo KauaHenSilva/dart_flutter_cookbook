@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 
 class SetttingScreen extends StatefulWidget {
   final Settings settings;
-  const SetttingScreen({Key? key, required this.settings}) : super(key: key);
+  final Function(Settings) onSettingsChanged;
+  const SetttingScreen(
+      {Key? key, required this.settings, required this.onSettingsChanged})
+      : super(key: key);
 
   @override
   State<SetttingScreen> createState() => _SetttingScreenState();
@@ -35,6 +38,7 @@ class _SetttingScreenState extends State<SetttingScreen> {
                 setState(() {
                   settings.isGlutenFree = value;
                 });
+                widget.onSettingsChanged(settings);
               },
             ),
             SwitchListTile(
@@ -43,8 +47,9 @@ class _SetttingScreenState extends State<SetttingScreen> {
               value: settings.isLactoseFree,
               onChanged: (value) {
                 setState(() {
-                  settings.isLactoseFree = value;
+                  settings.isGlutenFree = value;
                 });
+                widget.onSettingsChanged(settings);
               },
             ),
             SwitchListTile(
@@ -53,8 +58,9 @@ class _SetttingScreenState extends State<SetttingScreen> {
               value: settings.isVegan,
               onChanged: (value) {
                 setState(() {
-                  settings.isVegan = value;
+                  settings.isGlutenFree = value;
                 });
+                widget.onSettingsChanged(settings);
               },
             ),
             SwitchListTile(
@@ -63,8 +69,9 @@ class _SetttingScreenState extends State<SetttingScreen> {
               value: settings.isVegetarian,
               onChanged: (value) {
                 setState(() {
-                  settings.isVegetarian = value;
+                  settings.isGlutenFree = value;
                 });
+                widget.onSettingsChanged(settings);
               },
             ),
           ],

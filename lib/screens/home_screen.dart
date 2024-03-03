@@ -1,38 +1,94 @@
 import 'package:dart_flutter_cookbooks/components/my_drawer.dart';
+import 'package:dart_flutter_cookbooks/components/my_list_food.dart';
 import 'package:dart_flutter_cookbooks/data/dummy_data.dart';
 import 'package:dart_flutter_cookbooks/models/category.dart';
+import 'package:dart_flutter_cookbooks/models/meal.dart';
+import 'package:dart_flutter_cookbooks/models/settings.dart';
 import 'package:dart_flutter_cookbooks/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  final Settings settings;
+  final List<Meal> favorityMeals;
+  final Function(Meal) onToggleFavorite;
+  const HomeScreen(
+      {Key? key,
+      required this.settings,
+      required this.favorityMeals,
+      required this.onToggleFavorite})
+      : super(key: key);
 
-  _creatGridCategory(BuildContext context, List<Category> categories) {
-    final double height = MediaQuery.of(context).size.width;
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+
+  List<Meal> get filteredFavoriteMeals {
+    return widget.favorityMeals.where((meal) {
+      if (widget.settings.isGlutenFree && !meal.isGlutenFree) {
+        return false;
+      }
+      if (widget.settings.isLactoseFree && !meal.isLactoseFree) {
+        return false;
+      }
+      if (widget.settings.isVegan && !meal.isVegan) {
+        return false;
+      }
+      if (widget.settings.isVegetarian && !meal.isVegetarian) {
+        return false;
+      }
+      return true;
+    }).toList();
+  }
+
+  Widget _createGridCategoryView(List<Category> category) {
     return GridView.builder(
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: height > 600 ? 5 : 2,
+      padding: const EdgeInsets.all(25),
+      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+        maxCrossAxisExtent: 200,
         childAspectRatio: 3 / 2,
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
+        crossAxisSpacing: 20,
+        mainAxisSpacing: 20,
       ),
-      itemCount: categories.length,
+      itemCount: category.length,
       itemBuilder: (ctx, i) => InkWell(
         onTap: () {
-          Navigator.of(context).pushNamed(AppRoutes.mealsList, arguments: categories[i]);
+          Navigator.of(ctx).pushNamed(
+            AppRoutes.mealsList,
+            arguments: category[i],
+          );
         },
-        borderRadius: const BorderRadius.all(Radius.circular(15)),
+        borderRadius: BorderRadius.circular(15),
         child: Container(
-          margin: const EdgeInsets.all(5),
-          padding: const EdgeInsets.all(15),
           decoration: BoxDecoration(
-            color: categories[i].color,
+            color: category[i].color,
             borderRadius: BorderRadius.circular(15),
+            gradient: LinearGradient(
+              colors: [
+                category[i].color.withOpacity(0.7),
+                category[i].color,
+              ],
+            ),
           ),
-          child: Text(categories[i].title),
+          padding: const EdgeInsets.all(10),
+          margin: const EdgeInsets.all(5),
+          child: Text(category[i].title),
         ),
       ),
     );
+  }
+
+  Widget _createListFavoriteView(List<Meal> filteredFavoriteMeals) {
+    return ListView.builder(
+        itemCount: filteredFavoriteMeals.length,
+        itemBuilder: (ctx, i) {
+          return MyListFood(
+            meal: filteredFavoriteMeals[i],
+            mealsFavorite: filteredFavoriteMeals,
+            onToggleFavorite: widget.onToggleFavorite,
+          );
+        });
   }
 
   @override
@@ -41,20 +97,26 @@ class HomeScreen extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-            title: const Text('Home Screen'),
+            title: const Text('Home'),
             bottom: const TabBar(
               tabs: [
-                Tab(icon: Icon(Icons.restaurant_menu), text: 'Restaurants'),
-                Tab(icon: Icon(Icons.favorite), text: 'Favorite'),
+                Tab(
+                  icon: Icon(Icons.category),
+                  text: 'Categorias',
+                ),
+                Tab(
+                  icon: Icon(Icons.star),
+                  text: 'Favoritos',
+                ),
               ],
             )),
-        drawer: const MyDrawer(),
         body: TabBarView(
           children: [
-            _creatGridCategory(context, dummyCategories),
-            const Center(child: Text('Favorite')),
+            _createGridCategoryView(dummyCategories),
+            _createListFavoriteView(filteredFavoriteMeals),
           ],
         ),
+        drawer: const MyDrawer(),
       ),
     );
   }

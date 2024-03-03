@@ -1,3 +1,5 @@
+import 'package:dart_flutter_cookbooks/data/dummy_data.dart';
+import 'package:dart_flutter_cookbooks/models/meal.dart';
 import 'package:dart_flutter_cookbooks/models/settings.dart';
 import 'package:dart_flutter_cookbooks/routes/app_routes.dart';
 import 'package:dart_flutter_cookbooks/screens/home_screen.dart';
@@ -16,6 +18,29 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   Settings settings = Settings();
+  List<Meal> favorityFood = [];
+
+  @override
+  void initState() {
+    super.initState();
+    favorityFood = favorityFood;
+  }
+
+  void _updateFavoriteMeals(Meal meal) {
+    setState(() {
+      if (favorityFood.contains(meal)) {
+        favorityFood.remove(meal);
+      } else {
+        favorityFood.add(meal);
+      }
+    });
+  }
+
+  void _updateSettings(Settings settings) {
+    setState(() {
+      this.settings = settings;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +50,20 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
       routes: {
-        AppRoutes.home: (context) => const HomeScreen(),
-        AppRoutes.settings: (context) => SetttingScreen(settings: settings),
-        AppRoutes.mealsList: (context) => MealsListScreen(settings: settings),
+        AppRoutes.home: (context) => HomeScreen(
+              onToggleFavorite: _updateFavoriteMeals,
+              favorityMeals: favorityFood,
+              settings: settings,
+            ),
+        AppRoutes.settings: (context) => SetttingScreen(
+              settings: settings,
+              onSettingsChanged: _updateSettings,
+            ),
+        AppRoutes.mealsList: (context) => MealsListScreen(
+              settings: settings,
+              mealsFavorite: favorityFood,
+              onToggleFavorite: _updateFavoriteMeals,
+            ),
       },
     );
   }

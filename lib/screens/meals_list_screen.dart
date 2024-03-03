@@ -1,3 +1,4 @@
+import 'package:dart_flutter_cookbooks/components/my_list_food.dart';
 import 'package:dart_flutter_cookbooks/data/dummy_data.dart';
 import 'package:dart_flutter_cookbooks/models/category.dart';
 import 'package:dart_flutter_cookbooks/models/meal.dart';
@@ -6,13 +7,28 @@ import 'package:flutter/material.dart';
 
 class MealsListScreen extends StatefulWidget {
   final Settings settings;
-  const MealsListScreen({Key? key, required this.settings}) : super(key: key);
+  final List<Meal> mealsFavorite;
+  final Function(Meal) onToggleFavorite;
+  const MealsListScreen(
+      {Key? key,
+      required this.settings,
+      required this.mealsFavorite,
+      required this.onToggleFavorite})
+      : super(key: key);
 
   @override
   State<MealsListScreen> createState() => _MealsListScreenState();
 }
 
 class _MealsListScreenState extends State<MealsListScreen> {
+  late List<Meal> mealsFavorite;
+
+  @override
+  void initState() {
+    super.initState();
+    mealsFavorite = widget.mealsFavorite;
+  }
+
   List<Meal> get mealsFiltradConfig {
     return dummyMeals.where((meal) {
       if (widget.settings.isGlutenFree && !meal.isGlutenFree) {
@@ -40,35 +56,20 @@ class _MealsListScreenState extends State<MealsListScreen> {
         .where((element) => element.categories.contains(category.id))
         .toList();
 
-    Widget creatMealsList(List<Meal> meals) {
-      if (meals.isEmpty) {
-        return const Center(
-          child: Text('No meals found!'),
-        );
-      }
-
-      return ListView.builder(
-        itemCount: meals.length,
-        itemBuilder: (ctx, i) => ListTile(
-          leading: ClipRRect(
-            borderRadius: const BorderRadius.all(Radius.circular(50)),
-            child: Image.network(
-              height: 400,
-              width: 100,
-              meals[i].imageUrl,
-              fit: BoxFit.cover,
-            ),
-          ),
-          title: Text(meals[i].title),
-          subtitle: Text(meals[i].complexityText),
-        ),
-      );
-    }
-
     return Scaffold(
-        appBar: AppBar(
-          title: Text(category.title),
-        ),
-        body: creatMealsList(mealsFiltradFinal));
+      appBar: AppBar(
+        title: Text(category.title),
+      ),
+      body: ListView.builder(
+        itemCount: mealsFiltradFinal.length,
+        itemBuilder: (ctx, index) {
+          return MyListFood(
+            meal: mealsFiltradFinal[index],
+            onToggleFavorite: widget.onToggleFavorite,
+            mealsFavorite: mealsFavorite,
+          );
+        },
+      ),
+    );
   }
 }
