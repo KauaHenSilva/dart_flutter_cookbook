@@ -27,7 +27,7 @@ class MyDrawer extends StatelessWidget {
               overflow: TextOverflow.clip,
             ),
             subtitle: const Text('KauaHenSilva'),
-            leading: CircleAvatar(
+            leading: ClipOval(
               child: Image.network(
                 'https://avatars.githubusercontent.com/KauaHenSilva',
               ),
