@@ -1,5 +1,6 @@
 import 'package:dart_flutter_cookbooks/routes/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({Key? key}) : super(key: key);
@@ -41,8 +42,20 @@ class MyDrawer extends StatelessWidget {
           _creatItem(Icons.settings, 'Settings', () {
             Navigator.of(context).pushNamed(AppRoutes.settings);
           }),
+          _creatItem(Icons.favorite, 'GitHub', () {
+            abrirUrl();
+          }),
         ],
       ),
     );
   }
 }
+
+  void abrirUrl() async {
+    const url = 'https://github.com/KauaHenSilva';
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
