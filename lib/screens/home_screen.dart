@@ -42,12 +42,15 @@ class _HomeScreenState extends State<HomeScreen> {
     }).toList();
   }
 
-  Widget _createGridCategoryView(List<Category> category) {
+  Widget _createGridCategoryView(List<Category> category, BuildContext ctx) {
+    final bool orient = MediaQuery.of(ctx).orientation == Orientation.landscape;
+
     return GridView.builder(
       padding: const EdgeInsets.all(25),
-      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-        maxCrossAxisExtent: 200,
-        childAspectRatio: 3 / 2,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: orient ? 5 : 2,
+        mainAxisExtent: orient ? 200 : 150,
+        childAspectRatio: orient ? 3 / 2 : 3 / 2,
         crossAxisSpacing: 20,
         mainAxisSpacing: 20,
       ),
@@ -112,7 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
             )),
         body: TabBarView(
           children: [
-            _createGridCategoryView(dummyCategories),
+            _createGridCategoryView(dummyCategories, context),
             _createListFavoriteView(filteredFavoriteMeals),
           ],
         ),

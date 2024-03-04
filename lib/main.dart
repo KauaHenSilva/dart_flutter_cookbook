@@ -2,6 +2,7 @@ import 'package:dart_flutter_cookbooks/models/meal.dart';
 import 'package:dart_flutter_cookbooks/models/settings.dart';
 import 'package:dart_flutter_cookbooks/routes/app_routes.dart';
 import 'package:dart_flutter_cookbooks/screens/home_screen.dart';
+import 'package:dart_flutter_cookbooks/screens/meal_datail_screen.dart';
 import 'package:dart_flutter_cookbooks/screens/meals_list_screen.dart';
 import 'package:dart_flutter_cookbooks/screens/settting_screen.dart';
 import 'package:flutter/material.dart';
@@ -49,6 +50,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
       routes: {
+        AppRoutes.mealDetail: (context) => const MealDatail(),
         AppRoutes.home: (context) => HomeScreen(
               onToggleFavorite: _updateFavoriteMeals,
               favorityMeals: favorityFood,

@@ -1,4 +1,5 @@
 import 'package:dart_flutter_cookbooks/models/meal.dart';
+import 'package:dart_flutter_cookbooks/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 
 class MyListFood extends StatelessWidget {
@@ -35,6 +36,10 @@ class MyListFood extends StatelessWidget {
               icon: const Icon(Icons.star_border),
               onPressed: () => onToggleFavorite(meal),
             ),
+      onTap: () => Navigator.of(context).pushNamed(
+        AppRoutes.mealDetail,
+        arguments: meal,
+      )
     );
   }
 }
