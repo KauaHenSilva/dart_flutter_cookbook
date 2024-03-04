@@ -2,7 +2,7 @@
 
 ### 🎓 App em Execução (Web)
 
-> Link: [Flutter Dart Cookbooks App Web](cookbooks.vercel.app/)
+> Link: [Flutter Dart Cookbooks App Web](https://cookbooks.vercel.app/)
 
 > ⚠️ **Nota:** Este aplicativo foi desenvolvido para dispositivos móveis, algumas fontes podem não ser exibidas corretamente em outros ambientes.
 
