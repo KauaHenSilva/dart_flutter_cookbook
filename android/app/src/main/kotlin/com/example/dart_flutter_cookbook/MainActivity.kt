@@ -1,4 +1,4 @@
-package com.example.dart_flutter_cookbooks
+package com.example.dart_flutter_cookbook
 
 import io.flutter.embedding.android.FlutterActivity
 

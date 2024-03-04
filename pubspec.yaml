@@ -32,13 +32,13 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.2
   url_launcher: ^6.2.5
+  flutter_native_splash: ^2.2.19
+  flutter_launcher_icons: "^0.13.1"
+  flutter_lints: ^2.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_native_splash: ^2.2.19
-  flutter_launcher_icons: "^0.13.1"
-  flutter_lints: ^2.0.0
 
 # flutter pub run flutter_launcher_icons -f icon
 # flutter pub run flutter_launcher_icons
