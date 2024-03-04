@@ -1,4 +1,4 @@
 web/* linguist-vendored
 android/* linguist-vendored
-vercel/* linguist-vendored
+vercel/web/* linguist-vendored
 ios/* linguist-vendored
