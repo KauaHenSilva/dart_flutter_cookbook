@@ -1,18 +1,18 @@
 # Dart_Flutter_Cookbooks
 
-### 🎓 App em Execução (Web)
+### 🎓 Running the App (Web)
 
-> Link: [Flutter Dart Cookbooks App Web](https://dart-flutter-cookbook-run.vercel.app/)
+> Link: [Flutter Dart Cookbooks App Web](https://dart-flutter-cookbook.vercel.app/)
 
-> ⚠️ **Nota:** Este aplicativo foi desenvolvido para dispositivos móveis, algumas fontes podem não ser exibidas corretamente em outros ambientes.
+> ⚠️ **Note:** This application was developed for mobile devices, so some fonts may not display correctly in other environments.
 
-### 🚀 Iniciativa do Projeto
+### 🚀 Project Initiative
 
-Um projeto desenvolvido em Flutter e Dart para demonstração de conhecimento.
+A project developed in Flutter and Dart to demonstrate knowledge.
 
-### 📋 Pré-requisitos para execução
+### 📋 Prerequisites for Running
 
-Certifique-se de ter o Flutter e o Dart instalados. Se não tiver, siga as instruções em [flutter.dev](https://flutter.dev/docs/get-started/install) ou [youtubeTuturial](https://www.youtube.com/watch?v=7Kpd6eprz4k) para a instalação.
+Make sure you have Flutter and Dart installed. If not, follow the instructions at [flutter.dev](https://flutter.dev/docs/get-started/install) or this [YouTube tutorial](https://www.youtube.com/watch?v=7Kpd6eprz4k) for installation.
 
 Flutter --version:
 
@@ -23,51 +23,55 @@ Flutter --version:
   Tools • Dart 3.2.3 • DevTools 2.28.4
   ```
 
-Tenha um ambiente de trabalho como o [Visual Estudio Code](https://code.visualstudio.com/).
 
-Dentro desse abiente (vscode) instale as exetenções [Dart](https://marketplace.visualstudio.com/items?itemName=Dart-Code.dart-code) e [Flutter](https://marketplace.visualstudio.com/items?itemName=Dart-Code.flutter).
+Have a workspace set up with [Visual Studio Code](https://code.visualstudio.com/).
 
-### 🔧 Implantação
+Within this environment (VSCode), install the [Dart](https://marketplace.visualstudio.com/items?itemName=Dart-Code.dart-code) and [Flutter](https://marketplace.visualstudio.com/items?itemName=Dart-Code.flutter) extensions.
 
-1. **Clone este repositório:**
+### 🔧 Deployment
 
-    ```bash
-    git clone https://github.com/KauaHenSilva/Dart_Flutter_Cookbooks.git
-    ```
+1. **Clone this repository:**
 
-2. **Navegue até o diretório do projeto:**
+  ```bash
+  git clone https://github.com/KauaHenSilva/Dart_Flutter_Cookbooks.git
+  ```
 
-    ```bash
-    cd Dart_Flutter_Cookbooks
-    ```
+2. **Navigate to the project directory:**
 
-3. **Obtenha as dependências:**
+  ```bash
+  cd Dart_Flutter_Cookbooks
+  ```
 
-    ```
-    flutter pub get
-    ```
-    
-4. **Construa a Aplicação:**
+3. **Get the dependencies:**
 
-    ```
-    flutter build
-    ```
+  ```bash
+  flutter pub get
+  ```
+  
+4. **Build the application:**
+
+  ```bash
+  flutter build $deviseType
+  ```
 
 ### Usage
 
-Agora o projeto está configurado. Você pode executá-lo com o seguinte comando:
+Now the project is set up. You can run it with the following command:
 
-    flutter run
+  flutter run
 
-Ao Observar a tela:
+When viewing the screen:
+
 
   ```
-    [1]: 'Despositivo' (Android)
-    [2]: 'Despositivo' (ios)
+    [1]: 'Device' (Android)
+    [2]: 'Device' (iOS)
     [3]: Windows (windows)
     [4]: Linux (linux)
     [5]: Chrome (chrome)
     [6]: Edge (edge)
   ```
 
-Pressione a melhor opção para o seu caso.
+
+Press the best option for your case.
+
