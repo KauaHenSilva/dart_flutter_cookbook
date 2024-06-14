@@ -5,21 +5,19 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "dart_flutter_cookbooks",
-      "request": "launch",
-      "type": "dart"
-    },
-    {
-      "name": "dart_flutter_cookbooks (profile mode)",
-      "request": "launch",
+      "name": "flutter build web --verbose",
+      // "name": "flutter build web --verbose --dart-define=URL_BASE=https://desp-1c744-default-rtdb.firebaseio.com",
       "type": "dart",
-      "flutterMode": "profile"
-    },
-    {
-      "name": "dart_flutter_cookbooks (release mode)",
       "request": "launch",
-      "type": "dart",
-      "flutterMode": "release"
+      "program": "lib/main.dart",
+      "flutterMode": "debug",
+      "deviceId": "Chrome",
+      "args": [
+        "--web-port=8080",
+        "--web-enable-expression-evaluation",
+        // "--dart-define",
+        // "URL_BASE=https://desp-1c744-default-rtdb.firebaseio.com"
+      ],
     }
   ]
 }

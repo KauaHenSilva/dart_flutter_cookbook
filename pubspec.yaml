@@ -31,7 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
-  url_launcher: ^6.2.5
+  url_launcher: ^6.3.0
   flutter_native_splash: ^2.2.19
   flutter_launcher_icons: "^0.13.1"
   flutter_lints: ^2.0.0
